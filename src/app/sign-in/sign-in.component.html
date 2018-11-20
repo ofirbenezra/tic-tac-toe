@@ -1,0 +1,15 @@
+<div class="form-container">
+  <h3 style="text-align:left">Enter players names:</h3>
+  <mat-form-field>
+    <input matInput placeholder="Player 1 Name (X)" #player1>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Player 2 Name (O)" #player2>
+  </mat-form-field>
+  <!--<button #startBtn mat-button [disabled]="player1.value === '' || player2.value === ''" (click)="startGame()">Start-->
+    <!--Game!-->
+  <!--</button>-->
+  <button #startBtn mat-button (click)="startGame()">Start
+    Game!
+  </button>
+</div>
