@@ -6,10 +6,7 @@
   <mat-form-field>
     <input matInput placeholder="Player 2 Name (O)" #player2>
   </mat-form-field>
-  <!--<button #startBtn mat-button [disabled]="player1.value === '' || player2.value === ''" (click)="startGame()">Start-->
-    <!--Game!-->
-  <!--</button>-->
-  <button #startBtn mat-button (click)="startGame()">Start
-    Game!
+  <button #startBtn mat-button (click)="startGame()" class="start-btn"
+          [disabled]="player1.value === '' || player2.value === ''">Start Game!
   </button>
 </div>

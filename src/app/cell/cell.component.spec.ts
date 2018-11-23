@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CellComponent } from './cell.component';
+import { State } from '../game.service';
 
 describe('CellComponent', () => {
   let component: CellComponent;
@@ -21,5 +22,11 @@ describe('CellComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should draw X', () => {
+    component.cellState = State.X;
+    fixture.detectChanges();
+    expect(component.cellText).toBe('X');
   });
 });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {GameService} from '../game.service';
+import { Router } from '@angular/router';
+import { GameService } from '../game.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'hm-game',
@@ -10,17 +11,23 @@ import {GameService} from '../game.service';
 export class GameComponent implements OnInit {
   public firstPlayerName: string;
   public secondPlayerName: string;
+  gameStateMsg = '';
+  gameStateMsg$: Subscription;
 
-  constructor(private route: ActivatedRoute, private gameService: GameService) {
-    // this.gameService.init();
+  constructor(private router: Router, private gameService: GameService) {
+    this.gameService.init();
+    this.firstPlayerName = this.gameService.playerOneName;
+    this.secondPlayerName = this.gameService.playerTwoName;
+    this.gameStateMsg$ = gameService.gameStatusMsg$.subscribe(msg => {
+      this.gameStateMsg = msg;
+    });
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.firstPlayerName = params['firstPlayerName'];
-      this.secondPlayerName = params['secondPlayerName'];
-    });
+  }
 
-
+  restartGame() {
+    // this.gameService.resetGame();
+    this.router.navigate(['register']);
   }
 }

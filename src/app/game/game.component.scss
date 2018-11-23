@@ -1,3 +1,28 @@
 .player-names{
   padding-bottom: 20px;
+  div {
+    color: red;
+  }
+}
+
+.game-state-msg {
+  color: blue;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.restart-btn-wrapper{
+
+}
+
+.restart-btn {
+  background-color: #34495e;
+  color: #fff;
+  border: 0px;
+  font-family: 'Dosis', Helvetica, sans-serif;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 15px;
+  width: 38%;
+  margin: 10px auto 0;
 }

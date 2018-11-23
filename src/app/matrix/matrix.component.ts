@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {GameService, GameState, ICell, IRow, State} from '../game.service';
+import { Component, OnInit } from '@angular/core';
+import { GameService, GameState, ICell, IRow, State } from '../game.service';
 
 @Component({
   selector: 'hm-matrix',
@@ -18,9 +18,9 @@ export class MatrixComponent implements OnInit {
   }
 
   stateChange(cell: ICell) {
-    cell.state = this.gameService.gameState === GameState.XTurn ? State.X : State.O;
-
-    this.gameService.setGameState(cell.row, cell.col, cell.state);
+    if (this.gameService.gameState !== GameState.Won) {
+      cell.state = this.gameService.gameState === GameState.XTurn ? State.X : State.O;
+      this.gameService.setGameState(cell.row, cell.col, cell.state);
+    }
   }
-
 }

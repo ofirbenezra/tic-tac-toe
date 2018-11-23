@@ -1,5 +1,3 @@
-<div class="player-names">
-  <div><label>Player 1 (X): {{firstPlayerName}}</label></div>
-  <div><label>Player 2 (O): {{secondPlayerName}}</label></div>
-</div>
+<div class="game-state-msg">{{gameStateMsg}}</div>
 <hm-matrix></hm-matrix>
+<button class="restart-btn" (click)="restartGame()">New Game</button>

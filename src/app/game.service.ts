@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export enum GameState {
   XTurn = 0,
@@ -17,7 +18,6 @@ export interface ICell {
   row: number;
   col: number;
   state: State;
-  winningCell: boolean;
 }
 
 export type IRow = ICell[];
@@ -26,12 +26,18 @@ export type IRow = ICell[];
   providedIn: 'root'
 })
 export class GameService {
+  public playerOneName: string;
+  public playerTwoName: string;
   public rows: IRow[] = [];
   private _cells: ICell[] = [];
   public gameState: GameState;
+  isWinner = false;
   squares = Array(9).fill(null);
+  public gameStatusMsg$: BehaviorSubject<string>;
 
-  constructor() { }
+  constructor() {
+    this.gameStatusMsg$ = new BehaviorSubject<string>('');
+  }
 
   init() {
     this.resetGame();
@@ -39,13 +45,15 @@ export class GameService {
 
   resetGame() {
     this.rows = [];
+    this.isWinner = false;
     this.gameState = GameState.XTurn;
+    this.gameStatusMsg$.next(this.getGameStatusMessage(this.playerOneName));
     this.squares = Array(9).fill(null);
     for (let row = 0; row < 3; row += 1) {
       const newRow = [];
       this.rows.push(newRow);
       for (let col = 0; col < 3; col += 1) {
-        const newCell: ICell = {row: row, col: col, state: State.None, winningCell: false};
+        const newCell: ICell = {row: row, col: col, state: State.None};
         newRow.push(newCell);
         this._cells.push(newCell);
       }
@@ -54,15 +62,23 @@ export class GameService {
 
   setGameState(row: number, col: number, state: State) {
     const position = col + row * 3;
-    this.squares[position] = state;
-    if (this.isWinnigMove()) {
-      alert('player won' + state);
-    }
-    this.gameState = (state === State.X) ? GameState.OTurn : GameState.XTurn;
+    let player;
+    if (!this.isWinner && !this.squares[position] ) {
+      this.squares[position] = state;
+      if (this.isWiningMove()) {
+        this.isWinner = true;
+        this.gameState = GameState.Won;
+        player = (state === State.X) ? this.playerOneName : this.playerTwoName;
+      } else {
+        this.gameState = (state === State.X) ? GameState.OTurn : GameState.XTurn;
+        player = (this.gameState === GameState.XTurn) ? this.playerOneName : this.playerTwoName;
+      }
 
+      this.gameStatusMsg$.next(this.getGameStatusMessage(player));
+    }
   }
 
-  isWinnigMove() {
+  isWiningMove() {
     const conditions = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
       [0, 3, 6], [1, 4, 7], [2, 5, 8], // colums
@@ -76,5 +92,10 @@ export class GameService {
       }
     }
     return false;
+  }
+
+  private getGameStatusMessage(player: string) {
+    return this.isWinner ? `Player ${player} has won!` :
+      `Player ${player}'s turn`;
   }
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatrixComponent } from './matrix.component';
+import { CellComponent } from '../cell/cell.component';
 
 describe('MatrixComponent', () => {
   let component: MatrixComponent;
@@ -8,7 +9,7 @@ describe('MatrixComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatrixComponent ]
+      declarations: [ MatrixComponent, CellComponent ]
     })
     .compileComponents();
   }));

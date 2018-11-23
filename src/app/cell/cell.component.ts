@@ -20,12 +20,7 @@ export class CellComponent implements OnInit {
 
   setCellState() {
     if (this.cellState === State.None) {
-      // if (this.validTurn) {
         this.stateChange.emit(true);
-      // }
-      // else {
-      //   this.cellQuote = this.badTurn.getBadTurn();
-      // }
     }
   }
 

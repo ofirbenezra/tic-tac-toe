@@ -1,8 +1,5 @@
-<div class="board" style="background-color: aqua">
+<div class="board">
   <div *ngFor="let row of rows" class="row">
-    <!--<hm-cell *ngFor="let col of rows"-->
-             <!--(stateChangeRequested)="stateChange(col)"-->
-             <!--[cellState]="col.state"></hm-cell>-->
     <hm-cell *ngFor="let col of row" [row]="col.row" [col]="col.col" [cellState]="col.state"
              (stateChange)="stateChange(col)">
     </hm-cell>
