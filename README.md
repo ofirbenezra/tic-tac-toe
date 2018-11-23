@@ -11,4 +11,5 @@ Run ng serve
 
 Open localhost:4200
 
-
+# Test
+Run ng test (or ng test --code-coverage to get code coverage)
