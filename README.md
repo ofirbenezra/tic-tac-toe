@@ -8,6 +8,7 @@ This project simulates a Tic Tac Toe game using Angular 6 with Angular material 
 
 # How to run
 Run ng serve
+
 Open localhost:4200
 
 
