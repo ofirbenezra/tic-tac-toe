@@ -1,6 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {State} from '../game.service';
 
+/**
+ * @desc CellComponent
+ * Render a single cell component with styling
+ */
 @Component({
   selector: 'hm-cell',
   templateUrl: './cell.component.html',

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService, GameState, ICell, IRow, State } from '../game.service';
 
+/**
+ * @desc MatrixComponent
+ * Represents the board/matrix
+ * */
 @Component({
   selector: 'hm-matrix',
   templateUrl: './matrix.component.html',

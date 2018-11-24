@@ -25,6 +25,10 @@ export type IRow = ICell[];
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * @desc GameService service
+ * Handle all state changes and all application logic
+ */
 export class GameService {
   public playerOneName: string;
   public playerTwoName: string;
@@ -60,6 +64,9 @@ export class GameService {
     }
   }
 
+  /**
+   * @desc Set the game state and emit the status message to consumers
+   */
   setGameState(row: number, col: number, state: State) {
     const position = col + row * 3;
     let player;
@@ -78,6 +85,9 @@ export class GameService {
     }
   }
 
+  /**
+   * @desc Check if this is a winning move by checking if all variations
+   */
   isWiningMove() {
     const conditions = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
